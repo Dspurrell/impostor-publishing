@@ -16,9 +16,7 @@ const Products = () => {
 
   useEffect(() => {
     async function getProducts() {
-      const response = await axios.get(
-        "http://localhost:8888/.netlify/functions/stripeGetProducts"
-      );
+      const response = await axios.get("/.netlify/functions/stripeGetProducts");
       const { data } = response.data;
       setProductsList(data.reverse());
     }

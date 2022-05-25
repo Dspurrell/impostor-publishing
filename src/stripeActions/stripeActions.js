@@ -11,7 +11,7 @@ export const createPaymentIntent = async (
   name
 ) => {
   const response = await axios.post(
-    "http://localhost:8888/.netlify/functions/stripePiCreate",
+    "/.netlify/functions/stripePiCreate",
     JSON.stringify({
       price_id,
       quantity,
@@ -25,7 +25,7 @@ export const createPaymentIntent = async (
 
 export const updatePaymentIntent = async (pi_id, receipt_email) => {
   const response = await axios.post(
-    "http://localhost:8888/.netlify/functions/stripePiUpdate",
+    "/.netlify/functions/stripePiUpdate",
     JSON.stringify({
       pi_id,
       receipt_email,
@@ -37,7 +37,7 @@ export const updatePaymentIntent = async (pi_id, receipt_email) => {
 
 export const cancelPaymentIntent = async (pi_id) => {
   const response = await axios.post(
-    "http://localhost:8888/.netlify/functions/stripePiCancel",
+    "/.netlify/functions/stripePiCancel",
     JSON.stringify({
       pi_id,
     })
