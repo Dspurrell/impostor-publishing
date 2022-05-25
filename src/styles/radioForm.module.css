@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+.container > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="radio"] {
+    background-color: black;
+  }

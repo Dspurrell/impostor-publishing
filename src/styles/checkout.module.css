@@ -1,0 +1,110 @@
+:root {
+    --backgroundColour: #222222;
+        --background-colour: #333333;
+        --text-white: white;
+        --text-black: black;
+        --orange: rgb(255, 127, 48);
+}
+/*Checkout page */
+form {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-white);
+    animation: fade-in 1s;
+}
+
+aside {
+    display: "flex";
+    flex-direction: column;
+}
+
+
+    
+
+.container {
+    display: flex;
+    gap: 40px;
+}
+
+.container > * {
+    flex: 1;
+    background-color: var(--backgroundColour);
+    padding: 30px;
+}   
+
+.cartContainer {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 1fr auto auto;
+    column-gap: 30px;
+}
+
+.removeButton {
+    font-size: 1.5rem;
+    padding: 0px 5px;
+    background-color: var(--orange);
+    color: black;
+    border: 1px solid var(--orange);
+}
+
+.product {
+    display: flex;
+}
+
+.totalContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    border-top: 3px solid gray;
+}
+
+input[type="submit"] {
+    font-size: 3rem;
+    padding: 5px 0;
+    color: white;
+    box-shadow: 0 0 2px 1px var(--backgroundColour);
+    border: none;
+    background-color: var(--orange);
+    margin-top: 20px;
+    animation: fade-in 1s;
+    flex: 1;
+  }
+
+  input[type="submit"]:hover {
+      cursor: pointer;
+  }
+
+  .cartHeaders {
+      font-size: 2rem;
+  }
+
+  .cartHeadersBorder {
+      grid-column: 1/4;
+      border: 1px solid gray;
+      margin-bottom: 10px;
+  }
+
+  .totalPrice {
+      font-size: 3rem;
+      animation: fadeInText 1s ease-in;
+      position: relative;
+
+  }
+
+  .removeButton:hover {
+      cursor: pointer;
+  }
+
+  @keyframes fadeInText {
+    0% {opacity: 0;
+    left: -50px
+    }
+    100% {opacity: 1;
+    left: 0px}
+  }
+
+
+
+  /*physical & digital forms */
+
+  

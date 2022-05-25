@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap');
+:root {
+  --backgroundColour: #222222;
+  --background-colour: #333333;
+  --text-white: white;
+  --text-black: black;
+  --orange: rgb(255, 127, 48);
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-size: 12px;
+}
+body {
+  background-color:var(--background-colour);
+  height: 100%;
+}
+
+.layoutBody {
+  font-family: "Verdana", sans-serif;
+  
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 20px;
+  height: 100vh;
+
+  }
+
+main {
+  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+}
+
+header {
+  background: linear-gradient(black, var(--background-colour));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+h1 {
+  text-align: center;
+  opacity: 1;
+  padding-top: 50px;
+  font-size: 9rem;
+  margin: 0 0 50px 0;
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+footer {
+  padding: 5px 0;
+  text-align: center;
+  align-self: flex-end;
+  width: 100%;
+  background-color: var(--backgroundColour);
+}
+nav {
+  background-color: var(--orange);
+  padding: 10px 0;
+  box-shadow: 0 0 5px 1px var(--backgroundColour);
+  bottom: 0;
+}
+nav ul {
+  display: flex;
+  font-size: 1.8rem;
+  justify-content: center;
+  list-style-type: none;
+}
+nav ul li{
+position: relative;
+  margin: 0 20px;
+  cursor: pointer;
+  padding: 2px 10px;
+  font-weight: bold;
+  font-size: 2rem;
+  transition:ease .5s;
+}
+nav ul li:hover{
+  opacity: 1;
+  color: var(--orange);
+}
+p {
+  line-height: 1.8em;
+  font-size: 1.2em;
+  color: var(--text-black);
+}
+
+.pHeader {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 2rem;
+  border-radius: 50%;
+  margin: 10px;
+  padding: 5px 20px;
+  cursor: pointer;
+  transition: color .3s;
+}
+.icon:hover {
+  color: var(--orange)
+}
+
+a, a:focus, a:active {
+  color: var(--text-black);
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+  transition: .5s ease;
+}
+a:hover {
+  color: var(--text-white);
+}
+
+
+@media only screen and (max-width: 800px) {
+    nav ul {
+      flex-direction: column;
+      text-align: center;
+    }
+    li {
+      flex: 1;
+    }
+    main {
+      width: 100%;
+    }
+    h1 {
+      font-size: 4rem;
+    }
+
+}
