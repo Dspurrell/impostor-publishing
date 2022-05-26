@@ -74,14 +74,6 @@ const PhysicalInformation = ({
           }
         />
         <div className={productStyles.inputGroup}>
-          {/* <input
-                  className={productStyles.shippingInput}
-                  id={productStyles.country}
-                  type="text"
-                  placeholder="Country(Change to dropdown)"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                /> */}
           <select
             name="country"
             id={productStyles.country}

@@ -10,7 +10,6 @@ const Index = () => {
     const results = await axios.get(
       "http://localhost:8888/.netlify/functions/stripeGetProducts"
     );
-    console.log(results.data);
   };
 
   useEffect(() => {
@@ -20,16 +19,21 @@ const Index = () => {
     <Layout>
       <div className={indexStyles.blog}>
         <div className={indexStyles.imageInfo}>
-          <img src={satelites} alt="Book Cover" />
+          <img
+            src={satelites}
+            alt="Book Cover"
+            height="1080px"
+            width="1080px"
+          />
         </div>
 
         <div className={indexStyles.blogText}>
           <p className={indexStyles.pHeader}>Book Title</p>
-          <p className={indexStyles.pText}>Book description</p>
+          <p className={indexStyles.pText}>Place book description here.</p>
         </div>
         <div className={indexStyles.newsletter}>
           <p className={indexStyles.pHeader}>Newsletter</p>
-          <p className={indexStyles.pText}>Important news</p>
+          <p className={indexStyles.pText}>Place important news here.</p>
         </div>
       </div>
     </Layout>

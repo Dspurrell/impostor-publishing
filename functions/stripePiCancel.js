@@ -10,7 +10,6 @@ const headers = {
 
 const handler = async function (event) {
   if (event.httpMethod !== "POST" || !event.body) {
-    console.log("not post");
     return {
       statusCode,
       headers,

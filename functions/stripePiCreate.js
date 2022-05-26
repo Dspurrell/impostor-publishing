@@ -10,7 +10,6 @@ const headers = {
 
 const handler = async function (event) {
   //Return if it isnt a post request
-  console.log(event.httpMethod);
   if (event.httpMethod !== "POST" || !event.body) {
     return {
       statusCode,
@@ -36,7 +35,6 @@ const handler = async function (event) {
         enabled: true,
       },
     });
-    console.log(paymentIntent);
     return {
       statusCode,
       headers,

@@ -51,7 +51,6 @@ const Checkout = () => {
     };
     getClientSecret();
   }, [clientSecret]);
-
   return (
     <Layout>
       <div className={checkoutStyles.container}>
@@ -126,7 +125,7 @@ const Checkout = () => {
             </p>
           </div>
         </aside>
-        <div>
+        <div className={checkoutStyles.checkoutContainer}>
           <RadioForm
             isPhysical={isPhysical}
             setIsPhysical={setIsPhysical}

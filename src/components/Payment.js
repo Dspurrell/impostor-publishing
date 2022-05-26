@@ -28,42 +28,42 @@ const Payment = ({ physicalInformation, isPhysical, name, email, pi_id }) => {
       (!isPhysical && email && name)
     ) {
       setIsProcessing(true);
-      console.log("madeit");
       updatePaymentIntent(pi_id, email);
 
-      //   const confirmPayment = await stripe.confirmPayment({
-      //     elements,
-      //     confirmParams: {
-      //       shipping: isPhysical
-      //         ? {
-      //             address: {
-      //               city,
-      //               country: "au",
-      //               line1,
-      //               line2,
-      //               postal_code,
-      //             },
-      //             name: name,
-      //           }
-      //         : null,
-      //       payment_method_data: {
-      //         billing_details: {
-      //           name: name,
-      //           email: email,
-      //           address: isPhysical
-      //             ? { city, country: "au", line1, line2, postal_code }
-      //             : null,
-      //         },
-      //       },
-      //     },
-      //     // redirect: "if_required",
-      //   });
+      const confirmPayment = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          shipping: isPhysical
+            ? {
+                address: {
+                  city,
+                  country: "au",
+                  line1,
+                  line2,
+                  postal_code,
+                },
+                name: name,
+              }
+            : null,
+          payment_method_data: {
+            billing_details: {
+              name: name,
+              email: email,
+              address: isPhysical
+                ? { city, country: "au", line1, line2, postal_code }
+                : null,
+            },
+          },
+          return_url: window.location.origin + "/redirect",
+        },
+        // redirect: "if_required",
+      });
 
-      //   if (confirmPayment.error) {
-      //     setError(confirmPayment.error.message);
-      //     setIsProcessing(false);
-      //   }
-      //   //     // 4242424242424242
+      if (confirmPayment.error) {
+        setError(confirmPayment.error.message);
+        setIsProcessing(false);
+        setIsDisabled(true);
+      }
     }
   };
 
@@ -73,6 +73,12 @@ const Payment = ({ physicalInformation, isPhysical, name, email, pi_id }) => {
         <p className={paymentStyles.pHeader}>Payment</p>
       </div>
       <PaymentElement
+        options={{
+          style: {
+            color: "red",
+            backgroundColor: "red",
+          },
+        }}
         onChange={(e) => {
           e.complete ? setIsDisabled(false) : setIsDisabled(true);
           e.error ? setError(e.error.message) : setError("");

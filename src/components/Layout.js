@@ -20,6 +20,7 @@ const Layout = ({ children }) => {
         </div>
         <h1>Impostor Publishing</h1>
         <div>
+          <div className={layoutStyles.hamburger}>Hamburger Menu</div>
           <nav>
             <ul className="flex navbar">
               <li></li>
@@ -29,10 +30,7 @@ const Layout = ({ children }) => {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              <li>
-                <Link to="/">About</Link>
-              </li>
-              <li style={{ position: "absolute", right: 0 }}>
+              <li className={layoutStyles.cartIcon}>
                 <Link to="/checkout">Cart</Link>
               </li>
             </ul>

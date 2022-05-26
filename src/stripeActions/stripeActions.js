@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const absolutePath = "";
+
 export const displayPrice = (value) => {
   return "$" + value.toString().slice(0, -2) + ".00 AUD";
 };
@@ -11,7 +13,7 @@ export const createPaymentIntent = async (
   name
 ) => {
   const response = await axios.post(
-    "/.netlify/functions/stripePiCreate",
+    absolutePath + "/.netlify/functions/stripePiCreate",
     JSON.stringify({
       price_id,
       quantity,
@@ -19,13 +21,12 @@ export const createPaymentIntent = async (
       name,
     })
   );
-  console.log(response);
   return response.data;
 };
 
 export const updatePaymentIntent = async (pi_id, receipt_email) => {
   const response = await axios.post(
-    "/.netlify/functions/stripePiUpdate",
+    absolutePath + "/.netlify/functions/stripePiUpdate",
     JSON.stringify({
       pi_id,
       receipt_email,
@@ -37,7 +38,7 @@ export const updatePaymentIntent = async (pi_id, receipt_email) => {
 
 export const cancelPaymentIntent = async (pi_id) => {
   const response = await axios.post(
-    "/.netlify/functions/stripePiCancel",
+    absolutePath + "/.netlify/functions/stripePiCancel",
     JSON.stringify({
       pi_id,
     })
