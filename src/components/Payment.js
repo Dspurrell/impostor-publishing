@@ -73,12 +73,6 @@ const Payment = ({ physicalInformation, isPhysical, name, email, pi_id }) => {
         <p className={paymentStyles.pHeader}>Payment</p>
       </div>
       <PaymentElement
-        options={{
-          style: {
-            color: "red",
-            backgroundColor: "red",
-          },
-        }}
         onChange={(e) => {
           e.complete ? setIsDisabled(false) : setIsDisabled(true);
           e.error ? setError(e.error.message) : setError("");

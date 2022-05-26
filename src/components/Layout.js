@@ -20,7 +20,6 @@ const Layout = ({ children }) => {
         </div>
         <h1>Impostor Publishing</h1>
         <div>
-          <div className={layoutStyles.hamburger}>Hamburger Menu</div>
           <nav>
             <ul className="flex navbar">
               <li></li>
