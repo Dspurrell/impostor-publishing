@@ -71,7 +71,7 @@ const Checkout = () => {
             <p className={checkoutStyles.cartHeaders}>Quantity</p>
             <p className={checkoutStyles.cartHeaders}>Price</p>
             <div className={checkoutStyles.cartHeadersBorder}></div>
-            {state && state.quantity > 0 ? (
+            {state && state.quantity >= 1 ? (
               <>
                 <div className={checkoutStyles.product}>
                   <img
