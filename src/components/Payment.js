@@ -1,22 +1,30 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { updatePaymentIntent } from "../stripeActions/stripeActions";
 import * as paymentStyles from "../styles/payment.module.css";
 
-const Payment = ({ physicalInformation, isPhysical, name, email, pi_id }) => {
+const Payment = ({
+  physicalInformation,
+  isPhysical,
+  name,
+  email,
+  pi_id,
+  error,
+  setError,
+}) => {
   const { city, country, line1, line2, postal_code } = physicalInformation;
 
   // const [amount, setAmount] = useState(2500);
   const [isDisabled, setIsDisabled] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [error, setError] = useState("");
 
   const elements = useElements();
   const stripe = useStripe();
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (error) return;
     if (
       (isPhysical &&
         name &&
@@ -62,7 +70,6 @@ const Payment = ({ physicalInformation, isPhysical, name, email, pi_id }) => {
       if (confirmPayment.error) {
         setError(confirmPayment.error.message);
         setIsProcessing(false);
-        setIsDisabled(true);
       }
     }
   };
@@ -88,6 +95,10 @@ const Payment = ({ physicalInformation, isPhysical, name, email, pi_id }) => {
           disabled={isProcessing || isDisabled}
           className={paymentStyles.submit}
           value={isProcessing ? "Processing" : "Purchase"}
+          style={{
+            backgroundColor:
+              isDisabled || isProcessing ? "gray" : "rgb(255, 127, 48)",
+          }}
         />
       )}
     </form>

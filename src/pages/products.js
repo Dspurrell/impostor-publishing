@@ -9,7 +9,7 @@ import { displayPrice } from "../stripeActions/stripeActions";
 import Layout from "../components/Layout";
 import * as productStyles from "../styles/products.module.css";
 
-const absolutePath = "";
+const absolutePath = "http://localhost:8888";
 
 const Products = () => {
   const [error, setError] = useState("");

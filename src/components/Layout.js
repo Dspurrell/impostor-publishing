@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   return (
     <div className={layoutStyles.layoutBody}>
       <header>
-        <div className={layoutStyles.iconContainer}>
+        {/* <div className={layoutStyles.iconContainer}>
           <i className={layoutStyles.icon} aria-hidden="true">
             icon
           </i>
@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
           <i className={layoutStyles.icon} aria-hidden="true">
             Icon
           </i>
-        </div>
+        </div> */}
         <h1>Impostor Publishing</h1>
         <div>
           <nav>
@@ -28,9 +28,6 @@ const Layout = ({ children }) => {
               </li>
               <li>
                 <Link to="/">Home</Link>
-              </li>
-              <li className={layoutStyles.cartIcon}>
-                <Link to="/checkout">Cart</Link>
               </li>
             </ul>
           </nav>

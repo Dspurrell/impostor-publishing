@@ -28,9 +28,13 @@ const handler = async function (event) {
   }
 
   try {
+    const price = await stripe.prices.retrieve(price_id);
+
+    const amount = price.unit_amount * quantity;
+
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: 2500,
-      currency: "aud",
+      amount: amount,
+      currency: price.currency,
       automatic_payment_methods: {
         enabled: true,
       },
@@ -43,6 +47,7 @@ const handler = async function (event) {
         amount: paymentIntent.amount,
         status: paymentIntent.status,
         pi_id: paymentIntent.id,
+        quantity,
       }),
     };
   } catch (error) {

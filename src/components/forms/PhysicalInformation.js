@@ -9,6 +9,7 @@ const PhysicalInformation = ({
   setName,
   email,
   setEmail,
+  setError,
 }) => {
   const { line1, line2, city, postal_code } = physicalInformation;
   return (
@@ -32,7 +33,10 @@ const PhysicalInformation = ({
           placeholder="Email Address"
           value={email}
           required
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setError("");
+          }}
         />
         <input
           className={productStyles.shippingInput}

@@ -1,3 +1,4 @@
+import { Link } from "gatsby";
 import React from "react";
 
 const Redirect = ({ location }) => {
@@ -5,8 +6,8 @@ const Redirect = ({ location }) => {
   //   state: { shippingInfo },
   // } = location;
   // const { city, country, line1, line2, postal_code } = shippingInfo.address;
-  //   const params = new URL(location.href).searchParams;
-  //   const result = params.get("redirect_status");
+  const params = new URL(location.href).searchParams;
+  const result = params.get("redirect_status");
   return (
     <div
       style={{
@@ -19,7 +20,11 @@ const Redirect = ({ location }) => {
         alignItems: "center",
       }}
     >
-      <p>hey</p>
+      <p>
+        Your payment has been{" "}
+        {result === "succeeded" ? "successful" : "unsuccessful"}
+      </p>
+      <Link to="/">Click here to return to the home page.</Link>
       {/* <p style={{ fontSize: "3rem" }}>Success</p>
       <p>Thank you {shippingInfo.name}.</p>
       <p>Your item will be on the way shortly.</p>

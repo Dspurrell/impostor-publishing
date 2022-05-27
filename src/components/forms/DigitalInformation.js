@@ -6,6 +6,7 @@ const DigitalInformation = ({
   setName,
   email,
   setEmail,
+  setError,
 }) => {
   return (
     <div>
@@ -30,6 +31,7 @@ const DigitalInformation = ({
         required
         onChange={(e) => {
           setEmail(e.target.value);
+          setError("");
         }}
       />
     </div>

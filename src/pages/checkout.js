@@ -22,11 +22,15 @@ import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY);
 
 const Checkout = () => {
+  const [quantity, setQuantity] = useState();
+  const [error, setError] = useState("");
+  const [showPayment, setShowPayment] = useState(false);
   const [isPhysical, setIsPhysical] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
   const [pi_id, setPi_id] = useState();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [amount, setAmount] = useState();
   const [physicalInformation, setPhysicalInformation] = useState({
     name: "",
     city: "",
@@ -39,17 +43,24 @@ const Checkout = () => {
   const { state, dispatch } = useContext(CartContext);
 
   useEffect(() => {
+    let isMounted = true;
     const getClientSecret = async () => {
       if (state.quantity > 0 && !clientSecret) {
-        const { clientSecret, pi_id } = await createPaymentIntent(
-          "price_1KocgaAwcknZyyC5R6pHEmsc",
-          state.quantity
-        );
-        setClientSecret(clientSecret);
-        setPi_id(pi_id);
+        const { clientSecret, pi_id, amount, quantity } =
+          await createPaymentIntent(
+            "price_1KocgaAwcknZyyC5R6pHEmsc",
+            state.quantity
+          );
+        if (isMounted) {
+          setClientSecret(clientSecret);
+          setPi_id(pi_id);
+          setAmount(amount);
+          setQuantity(quantity);
+        }
       }
     };
     getClientSecret();
+    return () => (isMounted = false);
   }, [clientSecret]);
   return (
     <Layout>
@@ -77,7 +88,7 @@ const Checkout = () => {
                     {state.name}
                   </p>
                 </div>
-                <p style={{ textAlign: "center" }}>{state.quantity}</p>
+                <p style={{ textAlign: "center" }}>{quantity}</p>
                 <div
                   style={{
                     display: "flex",
@@ -93,6 +104,7 @@ const Checkout = () => {
                     onClick={async () => {
                       dispatch({ type: "EMPTY" });
                       cancelPaymentIntent(pi_id);
+                      setAmount(null);
                       setClientSecret("");
                     }}
                   >
@@ -112,16 +124,17 @@ const Checkout = () => {
             )}
           </div>
           <div className={checkoutStyles.totalContainer}>
-            <p className={productStyles.pHeader} style={{ color: "orange" }}>
+            <p
+              className={productStyles.pHeader}
+              style={{ color: "rgb(255, 127, 48)" }}
+            >
               Total:
             </p>
             <p
               className={checkoutStyles.totalPrice}
-              style={{ color: "orange" }}
+              style={{ color: "rgb(255, 127, 48)" }}
             >
-              {state && state.quantity > 0
-                ? `${displayPrice(state.price * state.quantity)}`
-                : null}
+              {amount ? `${displayPrice(amount)}` : null}
             </p>
           </div>
         </aside>
@@ -131,7 +144,13 @@ const Checkout = () => {
             setIsPhysical={setIsPhysical}
             productStyles={productStyles}
           />
-          <form id="paymentForm">
+          <form
+            id="paymentForm"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setShowPayment(true);
+            }}
+          >
             {isPhysical ? (
               <PhysicalInformation
                 setPhysicalInformation={setPhysicalInformation}
@@ -140,6 +159,7 @@ const Checkout = () => {
                 name={name}
                 email={email}
                 setEmail={setEmail}
+                setError={setError}
               />
             ) : (
               <DigitalInformation
@@ -148,10 +168,12 @@ const Checkout = () => {
                 name={name}
                 email={email}
                 setEmail={setEmail}
+                setError={setError}
               />
             )}
+            <input type="submit" value="Next" />
           </form>
-          {clientSecret && (
+          {clientSecret && showPayment && (
             <Elements stripe={stripePromise} options={{ clientSecret }}>
               <Payment
                 quantity={state.quantity}
@@ -161,6 +183,8 @@ const Checkout = () => {
                 email={email}
                 name={name}
                 pi_id={pi_id}
+                error={error}
+                setError={setError}
               />
             </Elements>
           )}
