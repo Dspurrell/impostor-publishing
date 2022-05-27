@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { updatePaymentIntent } from "../stripeActions/stripeActions";
 import * as paymentStyles from "../styles/payment.module.css";
+import { navigate } from "gatsby";
 
 const Payment = ({
   physicalInformation,
@@ -64,13 +65,18 @@ const Payment = ({
           },
           return_url: window.location.origin + "/redirect",
         },
-        // redirect: "if_required",
+        redirect: "if_required",
       });
 
       if (confirmPayment.error) {
         setError(confirmPayment.error.message);
         setIsProcessing(false);
       }
+      navigate("/redirect", {
+        state: {
+          status: confirmPayment.paymentIntent.status,
+        },
+      });
     }
   };
 

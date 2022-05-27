@@ -2,12 +2,7 @@ import { Link } from "gatsby";
 import React from "react";
 
 const Redirect = ({ location }) => {
-  // const {
-  //   state: { shippingInfo },
-  // } = location;
-  // const { city, country, line1, line2, postal_code } = shippingInfo.address;
-  const params = new URL(location.href).searchParams;
-  const result = params.get("redirect_status");
+  const status = location.state.status;
   return (
     <div
       style={{
@@ -21,8 +16,9 @@ const Redirect = ({ location }) => {
       }}
     >
       <p>
-        Your payment has been{" "}
-        {result === "succeeded" ? "successful" : "unsuccessful"}
+        {status === "succeeded"
+          ? "Your payment was successful."
+          : "Your payment was unsuccessful"}
       </p>
       <Link to="/">Click here to return to the home page.</Link>
       {/* <p style={{ fontSize: "3rem" }}>Success</p>
