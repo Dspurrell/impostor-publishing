@@ -21,15 +21,6 @@ const Redirect = ({ location }) => {
           : "Your payment was unsuccessful"}
       </p>
       <Link to="/">Click here to return to the home page.</Link>
-      {/* <p style={{ fontSize: "3rem" }}>Success</p>
-      <p>Thank you {shippingInfo.name}.</p>
-      <p>Your item will be on the way shortly.</p>
-      <p>Order Details:</p>
-      <p>Shipping Details:</p>
-      <p>{line1}</p>
-      <p>{city}</p>
-      <p>{postal_code}</p>
-      <p>{country}</p> */}
     </div>
   );
 };
