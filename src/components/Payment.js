@@ -72,9 +72,12 @@ const Payment = ({
         setError(confirmPayment.error.message);
         setIsProcessing(false);
       }
+      console.log(confirmPayment);
       navigate("/redirect", {
         state: {
           status: confirmPayment.paymentIntent.status,
+          amount: confirmPayment.paymentIntent.amount,
+          email: confirmPayment.paymentIntent.receipt_email,
         },
       });
     }

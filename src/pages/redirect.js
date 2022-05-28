@@ -1,11 +1,25 @@
-import { Link } from "gatsby";
-import React from "react";
+import { Link, navigate } from "gatsby";
+import React, { useEffect, useState } from "react";
+import * as redirectStyles from "../styles/redirect.module.css";
 
 const Redirect = ({ location }) => {
-  const { state = {} } = location;
-  const { status } = state;
+  const [state, setState] = useState({
+    status: "",
+    amount: "",
+    email: "",
+  });
 
-  return (
+  useEffect(() => {
+    console.log(state);
+    if (location.state)
+      setState({
+        status: location.state.status,
+        email: location.state.email,
+        amount: location.state.amount,
+      });
+    // else navigate("/");
+  }, []);
+  return location.state ? (
     <div
       style={{
         margin: "auto",
@@ -17,14 +31,22 @@ const Redirect = ({ location }) => {
         alignItems: "center",
       }}
     >
-      <p>
-        {status && location.state.status === "succeeded"
-          ? "Your payment was successful."
-          : "Your payment was unsuccessful"}
+      <p className={redirectStyles.status}>
+        {state.status === "succeeded" ? "Success!" : "Payment Unsuccessful"}
       </p>
-
-      <Link to="/">Click here to return to the home page.</Link>
+      <p className={redirectStyles.statusParagraph}>
+        {state.status === "succeeded"
+          ? "Your payment has been processed succesfully"
+          : "We were unabled to process your payment"}
+      </p>
+      <p>Amount: {state.amount}</p>
+      <p>Receipt email: {state.email}</p>
+      <Link className={redirectStyles.returnLink} to="/">
+        Click here to return
+      </Link>
     </div>
+  ) : (
+    <div></div>
   );
 };
 

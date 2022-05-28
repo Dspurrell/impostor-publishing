@@ -70,12 +70,13 @@
     .blog {
       grid-template-rows: auto auto;
       grid-template-columns: auto;
+      row-gap: 50px;
     }
     .blog img {
       margin: auto;
     }
     .blogText {
-      width: inherit;
+      width: 100%;
       margin: 0 auto;
       padding: 30px;
       height: fit-content;

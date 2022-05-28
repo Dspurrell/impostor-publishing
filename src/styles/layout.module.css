@@ -16,10 +16,11 @@
 body {
   background-color:var(--background-colour);
   height: 100%;
+  font-family: "Verdana", sans-serif;
 }
 
 .layoutBody {
-  font-family: "Verdana", sans-serif;
+
   
   display: grid;
   grid-template-rows: auto 1fr auto;

@@ -1,0 +1,25 @@
+:root {
+    --backgroundColour: #222222;
+    --background-colour: #333333;
+    --text-white: white;
+    --text-black: black;
+    --orange: rgb(255, 127, 48);
+  }
+
+.status {
+    font-size: 6rem;
+    text-align: center;
+}
+
+.statusSentence {
+
+}
+
+.returnLink {
+    font-size: 1.5rem;
+    padding: 5px 5px;
+    background-color: var(--orange);
+    color: black;
+    border: 1px solid var(--orange);
+    margin-top: 20px;
+}
