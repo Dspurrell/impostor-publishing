@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const absolutePath = "http://localhost:8888";
+const absolutePath = "";
 
 export const displayPrice = (value) => {
   return "$" + value.toString().slice(0, -2) + ".00 AUD";
