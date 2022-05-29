@@ -17,7 +17,7 @@ const Redirect = ({ location }) => {
         email: location.state.email,
         amount: location.state.amount,
       });
-    // else navigate("/");
+    else navigate("/");
   }, []);
   return location.state ? (
     <div
@@ -39,8 +39,7 @@ const Redirect = ({ location }) => {
           ? "Your payment has been processed succesfully"
           : "We were unabled to process your payment"}
       </p>
-      <p>Amount: {state.amount}</p>
-      <p>Receipt email: {state.email}</p>
+      <p>Your receipt will be sent to {state.email}.</p>
       <Link className={redirectStyles.returnLink} to="/">
         Click here to return
       </Link>

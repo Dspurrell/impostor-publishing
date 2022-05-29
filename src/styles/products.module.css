@@ -16,27 +16,31 @@ p {
 .container {
  display: flex;
  flex-direction: column;
+ align-items: center;
  margin-bottom: 80px;
  row-gap: 40px;
+ width: 40%;
+ margin: auto;
 }
 
 .purchaseContainer {
+    
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto;
     grid-template-rows: auto;
-    gap: 40px;
+    gap: 20px;
 }
 .purchaseContainer > div {
 background-color: var(--backgroundColour);
 padding: 10px;
+
 }
 
 .image {
-    height: auto;
-    max-width: 100%;
-    grid-row: 1/4;
+    height: 100%;
+    width: auto;
     animation: fade-in 1s;
-    margin-right: auto;
+    margin:auto;
     
 }
 
@@ -77,6 +81,7 @@ padding: 10px;
 .quantityContainer{
     display: flex;
     justify-content: space-between;
+
 }
 
 .quantityInput {
@@ -168,11 +173,12 @@ label {
 
 
 @media only screen and (max-width: 1200px) {
-    .purchaseContainer {
-        display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: auto;
-        gap: 20px;
+    .container {
+        width: 100%;
+    }
+    .image {
+        width: 100%;
+        height: auto;
     }
     .inputGroup {
         flex-direction: column;
